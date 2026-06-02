@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>NexusCo — Investment Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-dashboard">
+  <div class="nebula" aria-hidden="true">
+    <div class="nebula-cloud nebula-cloud--1"></div>
+    <div class="nebula-cloud nebula-cloud--2"></div>
+    <div class="nebula-cloud nebula-cloud--3"></div>
+    <div class="nebula-cloud nebula-cloud--4"></div>
+  </div>
+  <canvas id="portal-canvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header id="site-header"></header>
+
+  <main class="dashboard-main">
+    <div class="dashboard-wrap">
+      <div class="terminal-frame dashboard-frame">
+        <div class="frame-bar">
+          <span class="frame-dots" aria-hidden="true"></span>
+          <span class="frame-title">investment dashboard — member view</span>
+        </div>
+        <div class="frame-body">
+          <header class="dashboard-header">
+            <h1 class="dashboard-title accent-lavender">Portfolio</h1>
+            <p class="dashboard-sub muted">
+              Consortium allocations since <span class="accent-cyan">2023 Q4</span> across
+              <span class="accent-lavender">NexusCo</span>, <span class="accent-lavender">dao5</span>,
+              and aligned cryptocurrency DAOs.
+            </p>
+          </header>
+
+          <p class="consortium-note muted" id="consortium-note"></p>
+          <p class="member-notice" id="member-notice" hidden></p>
+
+          <div class="stats-row" id="stats-row">
+            <div class="stat-card">
+              <span class="stat-label">Consortium book</span>
+              <span class="stat-value accent-cyan" id="stat-dao-total">—</span>
+              <span class="stat-meta muted" id="stat-dao-meta"></span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Your total contributed</span>
+              <span class="stat-value" id="stat-your-total">—</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Your share of consortium</span>
+              <span class="stat-value accent-lavender" id="stat-your-share">—</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="invest-table" id="invest-table">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <button type="button" class="sort-btn" data-sort="name" aria-sort="none">
+                      Project <span class="sort-icon" aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button type="button" class="sort-btn" data-sort="sector" aria-sort="none">
+                      Sector <span class="sort-icon" aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button type="button" class="sort-btn" data-sort="daoCommitted" aria-sort="none">
+                      DAO allocation <span class="sort-icon" aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button type="button" class="sort-btn" data-sort="yourContribution" aria-sort="none">
+                      Your contribution <span class="sort-icon" aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button type="button" class="sort-btn" data-sort="yourSharePct" aria-sort="none">
+                      Your share <span class="sort-icon" aria-hidden="true"></span>
+                    </button>
+                  </th>
+                  <th scope="col">
+                    <button type="button" class="sort-btn" data-sort="status" aria-sort="none">
+                      Status <span class="sort-icon" aria-hidden="true"></span>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="invest-tbody"></tbody>
+            </table>
+          </div>
+
+          <p class="dashboard-disclaimer muted">
+            Consortium totals reflect aggregate participation across member DAOs from 2023 Q4 onward.
+            New wallet connections display zero personal allocation until principal attribution is recorded.
+          </p>
+        </div>
+      </div>
+
+      <section class="terminal-frame resources-frame" id="resources">
+        <div class="frame-bar">
+          <span class="frame-dots" aria-hidden="true"></span>
+          <span class="frame-title">resources — member documents</span>
+        </div>
+        <div class="frame-body">
+          <h2 class="section-title accent-lavender">Resources</h2>
+          <p class="resources-intro muted">
+            Agreements, whitepapers, and investment documentation. Available to connected members.
+          </p>
+          <ul class="resource-list" id="resource-list"></ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-brand">NexusCo</span>
+      <span class="footer-sep">·</span>
+      <span class="footer-copy">&copy; <span id="year"></span></span>
+      <span class="footer-sep">·</span>
+      <a href="mailto:join@nexusco.au" class="footer-email accent-cyan">join@nexusco.au</a>
+      <span class="footer-sep">·</span>
+      <span class="footer-status muted">member session active</span>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="wallet.js"></script>
+  <script src="nav-utils.js"></script>
+  <script src="header.js"></script>
+  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

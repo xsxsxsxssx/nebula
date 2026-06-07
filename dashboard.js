@@ -19,6 +19,7 @@
     RESOURCES,
     CONSORTIUM_SINCE,
     CONSORTIUM_NOTE,
+    ENQUIRE_URL,
   } = NexusData;
 
   const tbody = document.getElementById("invest-tbody");
@@ -32,22 +33,20 @@
   const sortButtons = document.querySelectorAll(".sort-btn");
 
   const portfolio = portfolioForWallet(account.address);
-  let sortKey = "name";
-  let sortDir = "asc";
+  let sortKey = "daoCommitted";
+  let sortDir = "desc";
 
   statDao.textContent = formatUsd(portfolio.totalDao);
   statDaoMeta.textContent = `since ${CONSORTIUM_SINCE}`;
   statYours.textContent = formatUsd(portfolio.totalYours);
   statShare.textContent = formatPct(portfolio.yourShareOfDao);
 
-  if (consortiumNote) {
-    consortiumNote.textContent = CONSORTIUM_NOTE;
-  }
+  if (consortiumNote) consortiumNote.textContent = CONSORTIUM_NOTE;
 
   if (memberNotice && portfolio.isNewMember) {
     memberNotice.hidden = false;
     memberNotice.innerHTML =
-      '<span class="accent-cyan">New connection.</span> Personal allocations are <span class="accent-lavender">$0</span> until attributed by principals. Consortium holdings above reflect aggregate DAO participation.';
+      'New connection. Personal allocations are <span class="accent-lavender">$0</span> until recorded. Use <strong>Contact to Enquire</strong> to reach principals regarding participation.';
   }
 
   function escapeHtml(s) {
@@ -69,13 +68,16 @@
       <tr>
         <td>
           <span class="cell-primary">${escapeHtml(row.name)}</span>
-          <span class="cell-meta muted">${escapeHtml(row.vintage)} · ${escapeHtml(row.consortium || "")}</span>
+          <span class="cell-meta muted">${escapeHtml(row.vintage)} · ${escapeHtml(row.round || "")} · ${escapeHtml(row.consortium || "")}</span>
         </td>
         <td>${escapeHtml(row.sector)}</td>
         <td class="accent-cyan-soft">${formatUsd(row.daoCommitted)}</td>
         <td class="cell-highlight">${formatUsd(row.yourContribution)}</td>
         <td>${formatPct(row.yourSharePct)}</td>
         <td><span class="status-pill status-pill--${slug(row.status)}">${escapeHtml(row.status)}</span></td>
+        <td>
+          <a href="${escapeHtml(ENQUIRE_URL)}" class="btn btn-enquire" target="_blank" rel="noopener noreferrer">Contact to Enquire</a>
+        </td>
       </tr>
     `
       )
@@ -90,9 +92,7 @@
       btn.setAttribute("aria-sort", aria);
       btn.classList.toggle("sort-btn--active", active);
       const icon = btn.querySelector(".sort-icon");
-      if (icon) {
-        icon.textContent = active ? (sortDir === "asc" ? "↑" : "↓") : "↕";
-      }
+      if (icon) icon.textContent = active ? (sortDir === "asc" ? "↑" : "↓") : "↕";
     });
   }
 
@@ -103,9 +103,10 @@
         sortDir = sortDir === "asc" ? "desc" : "asc";
       } else {
         sortKey = key;
-        sortDir = key === "daoCommitted" || key === "yourContribution" || key === "yourSharePct"
-          ? "desc"
-          : "asc";
+        sortDir =
+          key === "daoCommitted" || key === "yourContribution" || key === "yourSharePct"
+            ? "desc"
+            : "asc";
       }
       updateSortUI();
       renderTable();
@@ -114,7 +115,6 @@
 
   function renderResources() {
     if (!resourceList) return;
-
     resourceList.innerHTML = RESOURCES.map(
       (doc) => `
       <li class="resource-item">
@@ -123,9 +123,7 @@
           <span class="resource-date muted">${escapeHtml(doc.updated)} · ${escapeHtml(doc.format)}</span>
         </div>
         <span class="resource-title">${escapeHtml(doc.title)}</span>
-        <button type="button" class="resource-dl btn btn-ghost" disabled title="Document vault — coming soon">
-          Request access
-        </button>
+        <button type="button" class="resource-dl btn btn-ghost" disabled>Request access</button>
       </li>
     `
     ).join("");

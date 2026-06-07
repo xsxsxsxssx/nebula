@@ -1,27 +1,28 @@
-/* NexusCo — light retro terminal / portal */
+/* NexusCo — dark terminal / nebula */
 
 :root {
-  --bg: #f6f6f4;
-  --bg-panel: #ffffff;
-  --fg: #141414;
-  --fg-secondary: #3d3d3d;
-  --fg-muted: #737373;
-  --border: #d4d4d0;
-  --border-soft: #e8e8e4;
-  --accent: #2f2f2f;
-  --lavender: #7a6b9e;
-  --lavender-soft: #9a8bb8;
-  --lavender-bg: rgba(122, 107, 158, 0.08);
-  --cyan: #3d8a8a;
-  --cyan-soft: #5aa8a8;
-  --cyan-bg: rgba(61, 138, 138, 0.08);
-  --galaxy-1: rgba(122, 107, 158, 0.05);
-  --galaxy-2: rgba(61, 138, 138, 0.04);
-  --ring: rgba(20, 20, 20, 0.08);
-  --shadow: rgba(0, 0, 0, 0.04);
+  --bg: #09090b;
+  --bg-panel: #121216;
+  --bg-elevated: #1a1a20;
+  --fg: #ececef;
+  --fg-secondary: #b4b4be;
+  --fg-muted: #6e6e7a;
+  --border: #2a2a34;
+  --border-soft: #1e1e26;
+  --accent: #d8d8e0;
+  --lavender: #b8a8e8;
+  --lavender-soft: #9b8fd4;
+  --lavender-bg: rgba(155, 143, 212, 0.12);
+  --cyan: #6ec9c9;
+  --cyan-soft: #8eded8;
+  --cyan-bg: rgba(110, 201, 201, 0.1);
+  --galaxy-1: rgba(155, 143, 212, 0.08);
+  --galaxy-2: rgba(110, 201, 201, 0.06);
+  --ring: rgba(200, 200, 220, 0.1);
+  --shadow: rgba(0, 0, 0, 0.45);
   --font: "IBM Plex Mono", "Courier New", Courier, monospace;
   --max-width: 640px;
-  --max-width-wide: 920px;
+  --max-width-wide: 960px;
   --header-height: 3.25rem;
   --radius: 2px;
 }
@@ -42,12 +43,9 @@
   color: var(--lavender-soft);
 }
 
-.logo.accent-lavender-soft {
+.logo {
   color: var(--fg);
-  background: linear-gradient(135deg, var(--fg) 0%, var(--lavender) 48%, var(--cyan-soft) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 48px var(--lavender-bg);
 }
 
 *,
@@ -68,9 +66,9 @@ body {
   font-family: var(--font);
   background: var(--bg);
   background-image:
-    radial-gradient(ellipse 90% 60% at 15% 20%, rgba(155, 130, 190, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 15%, rgba(90, 160, 175, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 80% 55% at 50% 95%, rgba(180, 140, 210, 0.08) 0%, transparent 55%);
+    radial-gradient(ellipse 90% 60% at 15% 20%, rgba(155, 143, 212, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 15%, rgba(110, 201, 201, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 55% at 50% 95%, rgba(120, 90, 160, 0.06) 0%, transparent 55%);
   color: var(--fg);
   line-height: 1.75;
   min-height: 100vh;
@@ -100,7 +98,7 @@ body {
   height: min(45vw, 340px);
   top: 8%;
   left: -8%;
-  background: rgba(155, 130, 190, 0.35);
+  background: rgba(120, 100, 170, 0.22);
   animation-duration: 52s;
 }
 
@@ -109,7 +107,7 @@ body {
   height: min(40vw, 300px);
   top: 55%;
   right: -10%;
-  background: rgba(90, 175, 185, 0.3);
+  background: rgba(70, 150, 160, 0.18);
   animation-delay: -12s;
   animation-duration: 44s;
 }
@@ -119,7 +117,7 @@ body {
   height: min(38vw, 280px);
   bottom: 5%;
   left: 25%;
-  background: rgba(200, 160, 220, 0.22);
+  background: rgba(140, 110, 180, 0.14);
   animation-delay: -24s;
   animation-direction: reverse;
 }
@@ -129,7 +127,7 @@ body {
   height: min(30vw, 220px);
   top: 30%;
   left: 45%;
-  background: rgba(120, 190, 200, 0.2);
+  background: rgba(90, 170, 180, 0.12);
   animation-delay: -8s;
   animation-duration: 56s;
 }
@@ -178,11 +176,11 @@ body {
   justify-content: center;
   background: linear-gradient(
     to bottom,
-    rgba(246, 246, 244, 0.94) 0%,
-    rgba(246, 246, 244, 0.88) 70%,
+    rgba(9, 9, 11, 0.96) 0%,
+    rgba(9, 9, 11, 0.88) 70%,
     transparent 100%
   );
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .site-header--spread {
@@ -367,7 +365,7 @@ main {
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 1rem;
-  background: var(--bg);
+  background: var(--bg-elevated);
   border-bottom: 1px solid var(--border-soft);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
@@ -835,15 +833,35 @@ main {
 }
 
 .btn-primary {
-  background: var(--fg);
-  color: var(--bg-panel);
-  border-color: var(--fg);
+  background: var(--lavender-soft);
+  color: var(--bg);
+  border-color: var(--lavender-soft);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  background: var(--fg-secondary);
-  border-color: var(--fg-secondary);
+  background: var(--lavender);
+  border-color: var(--lavender);
+  color: var(--bg);
+}
+
+.btn-enquire {
+  font-size: 0.58rem;
+  padding: 0.35rem 0.5rem;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  background: transparent;
+  color: var(--cyan-soft);
+  border: 1px solid var(--border);
+}
+
+.btn-enquire:hover,
+.btn-enquire:focus-visible {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-bg);
+  outline: none;
 }
 
 .btn-secondary {
@@ -951,7 +969,7 @@ main {
   text-transform: uppercase;
   font-size: 0.65rem;
   color: var(--fg-muted);
-  background: var(--bg);
+  background: var(--bg-elevated);
 }
 
 .invest-table tbody tr:last-child td {
@@ -959,7 +977,7 @@ main {
 }
 
 .invest-table tbody tr:hover td {
-  background: rgba(0, 0, 0, 0.015);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .cell-primary {
@@ -1174,9 +1192,23 @@ main {
   font-weight: 500;
   letter-spacing: 0.05em;
   border: 1px solid var(--border);
-  background: var(--bg-panel);
+  background: var(--bg-elevated);
   color: var(--lavender);
   border-radius: var(--radius);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.member-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.member-avatar-fallback {
+  display: block;
 }
 
 .member-card--founder .member-avatar {
@@ -1248,7 +1280,7 @@ main {
 
 ::selection {
   background: var(--lavender-soft);
-  color: var(--bg-panel);
+  color: var(--bg);
 }
   background: var(--fg);
   color: var(--bg-panel);
@@ -1389,8 +1421,14 @@ main {
   }
 
   .invest-table th:nth-child(2),
-  .invest-table td:nth-child(2) {
+  .invest-table td:nth-child(2),
+  .invest-table th:last-child,
+  .invest-table td:last-child {
     display: none;
+  }
+
+  .btn-enquire {
+    font-size: 0.55rem;
   }
 
   .resource-item {

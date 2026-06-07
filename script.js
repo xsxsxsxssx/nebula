@@ -21,14 +21,14 @@
 
     if (account?.address) {
       heroMeta.innerHTML = `
-        <span class="meta-line"><span class="caret">›</span> session: member</span>
-        <span class="meta-line muted">portal active — <a href="dashboard.html" class="inline-link accent-cyan">dashboard</a> · <a href="dashboard.html#resources" class="inline-link accent-lavender">resources</a></span>
+        <span class="meta-line"><span class="caret">›</span> authenticated</span>
+        <span class="meta-line muted"><a href="dashboard.html" class="inline-link accent-cyan">dashboard</a> · <a href="members.html" class="inline-link accent-lavender">members</a></span>
       `;
       if (accessActions) accessActions.hidden = true;
     } else {
       heroMeta.innerHTML = `
-        <span class="meta-line"><span class="caret">›</span> session: observer</span>
-        <span class="meta-line muted">connect wallet for portfolio &amp; member resources</span>
+        <span class="meta-line"><span class="caret">›</span> observer</span>
+        <span class="meta-line muted">authenticated access required</span>
       `;
       if (accessActions) accessActions.hidden = false;
     }
@@ -112,7 +112,7 @@
       g.addColorStop(0, "rgba(155, 130, 190, 0.09)");
       g.addColorStop(0.25, "rgba(100, 160, 190, 0.06)");
       g.addColorStop(0.55, "rgba(180, 140, 200, 0.03)");
-      g.addColorStop(1, "rgba(246, 246, 244, 0)");
+      g.addColorStop(1, "rgba(10, 10, 12, 0)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 

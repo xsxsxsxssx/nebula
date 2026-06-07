@@ -1,137 +1,202 @@
 /**
- * NexusCo portfolio & resources (illustrative — wire to on-chain / API in production)
+ * NexusCo portfolio & resources
  */
 (function (global) {
   "use strict";
 
-  /** Low nine-figure consortium book (DAO5-class peers, 2023 Q4 onward) */
-  const CONSORTIUM_BOOK_USD = 312_400_000;
-  const CONSORTIUM_SINCE = "2023 Q4";
-  const CONSORTIUM_NOTE =
-    "Capital deployed across NexusCo, dao5, and aligned cryptocurrency DAO participation.";
+  const ENQUIRE_URL = "https://x.com/AlekPavicevic";
 
   const INVESTMENTS = [
     {
-      id: "helix",
-      name: "Helix Protocol",
-      sector: "Infrastructure",
-      daoCommitted: 68_200_000,
-      currency: "USDC",
+      id: "eigenlayer",
+      name: "EigenLayer",
+      sector: "Restaking",
+      daoCommitted: 42_000_000,
+      currency: "USD",
       status: "Active",
-      vintage: "2024-Q2",
+      vintage: "2024-Q1",
       consortium: "dao5",
+      round: "Series B",
     },
     {
-      id: "vaultline",
-      name: "Vaultline Finance",
-      sector: "DeFi",
-      daoCommitted: 54_750_000,
-      currency: "USDC",
-      status: "Active",
-      vintage: "2024-Q3",
-      consortium: "NexusCo",
-    },
-    {
-      id: "orbit",
-      name: "Orbit Mesh",
-      sector: "Connectivity",
-      daoCommitted: 41_300_000,
-      currency: "USDC",
-      status: "Active",
-      vintage: "2025-Q1",
-      consortium: "dao5",
-    },
-    {
-      id: "sentinel",
-      name: "Sentinel Labs",
-      sector: "Security",
-      daoCommitted: 28_900_000,
-      currency: "USDC",
-      status: "Deploying",
-      vintage: "2025-Q2",
-      consortium: "NexusCo",
-    },
-    {
-      id: "aegis",
-      name: "Aegis Reserve",
-      sector: "Treasury",
-      daoCommitted: 62_150_000,
-      currency: "USDC",
+      id: "celestia",
+      name: "Celestia",
+      sector: "Modular DA",
+      daoCommitted: 36_500_000,
+      currency: "USD",
       status: "Active",
       vintage: "2023-Q4",
       consortium: "dao5",
+      round: "Strategic",
     },
     {
-      id: "meridian",
-      name: "Meridian Stack",
-      sector: "Infrastructure",
-      daoCommitted: 33_100_000,
-      currency: "USDC",
+      id: "berachain",
+      name: "Berachain",
+      sector: "L1",
+      daoCommitted: 31_250_000,
+      currency: "USD",
+      status: "Active",
+      vintage: "2024-Q2",
+      consortium: "NexusCo",
+      round: "Series A",
+    },
+    {
+      id: "monad",
+      name: "Monad",
+      sector: "L1",
+      daoCommitted: 27_800_000,
+      currency: "USD",
+      status: "Active",
+      vintage: "2024-Q3",
+      consortium: "dao5",
+      round: "Strategic",
+    },
+    {
+      id: "scroll",
+      name: "Scroll",
+      sector: "L2",
+      daoCommitted: 21_400_000,
+      currency: "USD",
       status: "Active",
       vintage: "2024-Q1",
       consortium: "aligned DAO",
+      round: "Series B",
     },
     {
-      id: "cascade",
-      name: "Cascade Liquidity",
-      sector: "DeFi",
-      daoCommitted: 24_000_000,
-      currency: "USDC",
+      id: "espresso",
+      name: "Espresso Systems",
+      sector: "Sequencing",
+      daoCommitted: 17_600_000,
+      currency: "USD",
+      status: "Active",
+      vintage: "2024-Q4",
+      consortium: "dao5",
+      round: "Strategic",
+    },
+    {
+      id: "avail",
+      name: "Avail",
+      sector: "Data availability",
+      daoCommitted: 14_200_000,
+      currency: "USD",
+      status: "Active",
+      vintage: "2024-Q2",
+      consortium: "NexusCo",
+      round: "Seed+",
+    },
+    {
+      id: "initia",
+      name: "Initia",
+      sector: "Interwoven stack",
+      daoCommitted: 12_750_000,
+      currency: "USD",
+      status: "Deploying",
+      vintage: "2025-Q1",
+      consortium: "dao5",
+      round: "Series A",
+    },
+    {
+      id: "wormhole",
+      name: "Wormhole",
+      sector: "Interoperability",
+      daoCommitted: 24_300_000,
+      currency: "USD",
       status: "Active",
       vintage: "2023-Q4",
       consortium: "dao5",
+      round: "Strategic",
+    },
+    {
+      id: "kamino",
+      name: "Kamino Finance",
+      sector: "DeFi",
+      daoCommitted: 19_100_000,
+      currency: "USD",
+      status: "Active",
+      vintage: "2024-Q3",
+      consortium: "NexusCo",
+      round: "Strategic",
     },
   ];
 
+  const CONSORTIUM_BOOK_USD = INVESTMENTS.reduce((s, i) => s + i.daoCommitted, 0);
+  const CONSORTIUM_SINCE = "2023 Q4";
+  const CONSORTIUM_NOTE =
+    "Aggregate consortium participation across NexusCo, dao5, and aligned cryptocurrency DAOs. Figures represent committed capital by vintage.";
+
   const RESOURCES = [
+    { id: "lpa", title: "Limited Partnership Agreement", category: "Agreement", updated: "2024-01-12", format: "PDF" },
+    { id: "charter", title: "DAO Conversion Charter (Draft)", category: "Agreement", updated: "2025-03-08", format: "PDF" },
+    { id: "whitepaper", title: "NexusCo Protocol Whitepaper", category: "Whitepaper", updated: "2024-06-20", format: "PDF" },
+    { id: "memo-q4", title: "Investment Memo — 2023 Q4 Deployment", category: "Investment", updated: "2023-12-01", format: "PDF" },
+    { id: "memo-infra", title: "Infrastructure Sleeve Overview", category: "Investment", updated: "2024-09-15", format: "PDF" },
+    { id: "risk", title: "Risk & Disclosure Schedule", category: "Compliance", updated: "2024-02-28", format: "PDF" },
+    { id: "governance", title: "Governance Framework — NXS", category: "Governance", updated: "2025-01-10", format: "PDF" },
+  ];
+
+  /** Obscure CryptoPunk token IDs — not associated with public figures */
+  const MEMBERS = [
     {
-      id: "lpa",
-      title: "Limited Partnership Agreement",
-      category: "Agreement",
-      updated: "2024-01-12",
-      format: "PDF",
+      id: "aleksa-pavicevic",
+      name: "Aleksa Pavicevic",
+      role: "Founding Principal",
+      location: "Montenegro",
+      since: "2023 Q4",
+      xHandle: "AlekPavicevic",
+      xUrl: ENQUIRE_URL,
+      focus: "Allocation, member review, consortium coordination",
+      bio: "Founding principal. Oversees mandate execution and principal introductions. Correspondence via X only.",
+      tags: ["Principals", "Governance"],
+      avatar: "https://cryptopunks.app/cryptopunks/punk6845.webp",
+      avatarType: "CryptoPunk #6845",
     },
     {
-      id: "charter",
-      title: "DAO Conversion Charter (Draft)",
-      category: "Agreement",
-      updated: "2025-03-08",
-      format: "PDF",
+      id: "elena-vukovic",
+      name: "Elena Vuković",
+      role: "Governance Lead",
+      location: "Belgrade",
+      since: "2024 Q1",
+      focus: "NXS charter, conversion mechanics",
+      bio: "Governance and protocol conversion. Committee member.",
+      tags: ["Governance"],
+      avatar: "https://cryptopunks.app/cryptopunks/punk9123.webp",
+      avatarType: "CryptoPunk #9123",
     },
     {
-      id: "whitepaper",
-      title: "NexusCo Protocol Whitepaper",
-      category: "Whitepaper",
-      updated: "2024-06-20",
-      format: "PDF",
+      id: "marcus-chen",
+      name: "Marcus Chen",
+      role: "Research Principal",
+      location: "Singapore",
+      since: "2024 Q2",
+      focus: "Infrastructure & DeFi diligence",
+      bio: "Investment memo review and sleeve analysis.",
+      tags: ["Research"],
+      avatar: "https://cryptopunks.app/cryptopunks/punk4455.webp",
+      avatarType: "CryptoPunk #4455",
     },
     {
-      id: "memo-q4",
-      title: "Investment Memo — 2023 Q4 Deployment",
-      category: "Investment",
-      updated: "2023-12-01",
-      format: "PDF",
+      id: "sofia-antonelli",
+      name: "Sofia Antonelli",
+      role: "Operations & Treasury",
+      location: "Milan",
+      since: "2023 Q4",
+      focus: "Treasury reporting, reconciliations",
+      bio: "Cross-DAO treasury telemetry and member reporting.",
+      tags: ["Operations"],
+      avatar: "https://cryptopunks.app/cryptopunks/punk7731.webp",
+      avatarType: "CryptoPunk #7731",
     },
     {
-      id: "memo-infra",
-      title: "Infrastructure Sleeve Overview",
-      category: "Investment",
-      updated: "2024-09-15",
-      format: "PDF",
-    },
-    {
-      id: "risk",
-      title: "Risk & Disclosure Schedule",
-      category: "Compliance",
-      updated: "2024-02-28",
-      format: "PDF",
-    },
-    {
-      id: "governance",
-      title: "Governance Framework — NXS",
-      category: "Governance",
-      updated: "2025-01-10",
-      format: "PDF",
+      id: "james-holt",
+      name: "James Holt",
+      role: "Member Relations",
+      location: "London",
+      since: "2025 Q1",
+      focus: "Referral review",
+      bio: "Closed referral graph. No public intake.",
+      tags: ["Membership"],
+      avatar: "https://cryptopunks.app/cryptopunks/punk3388.webp",
+      avatarType: "CryptoPunk #3388",
     },
   ];
 
@@ -145,7 +210,7 @@
       return { amount: 0, sharePct: 0 };
     }
     const seed = hashString(`${address.toLowerCase()}:${investmentId}`);
-    const ratio = 0.0012 + (seed % 800) / 100000;
+    const ratio = 0.0008 + (seed % 500) / 200000;
     const amount = Math.round(daoCommitted * ratio);
     const sharePct = daoCommitted ? (amount / daoCommitted) * 100 : 0;
     return { amount, sharePct };
@@ -181,28 +246,21 @@
         inv.id,
         inv.daoCommitted
       );
-      return {
-        ...inv,
-        yourContribution: amount,
-        yourSharePct: sharePct,
-      };
+      return { ...inv, yourContribution: amount, yourSharePct: sharePct };
     });
 
-    const totalDaoListed = rows.reduce((s, r) => s + r.daoCommitted, 0);
     const totalYours = rows.reduce((s, r) => s + r.yourContribution, 0);
-    const newMember = isNewMember(address);
 
     return {
       rows,
       totalDao: CONSORTIUM_BOOK_USD,
-      totalDaoListed,
       totalYours,
       yourShareOfDao: CONSORTIUM_BOOK_USD
         ? (totalYours / CONSORTIUM_BOOK_USD) * 100
         : 0,
       consortiumSince: CONSORTIUM_SINCE,
       consortiumNote: CONSORTIUM_NOTE,
-      isNewMember: newMember,
+      isNewMember: isNewMember(address),
     };
   }
 
@@ -219,14 +277,11 @@
   function sortRows(rows, key, direction) {
     const spec = SORT_KEYS[key];
     if (!spec) return rows.slice();
-
     const mult = direction === "desc" ? -1 : 1;
     return rows.slice().sort((a, b) => {
       const av = spec.get(a);
       const bv = spec.get(b);
-      if (spec.type === "number") {
-        return (av - bv) * mult;
-      }
+      if (spec.type === "number") return (av - bv) * mult;
       return String(av).localeCompare(String(bv), undefined, {
         sensitivity: "base",
         numeric: true,
@@ -234,74 +289,11 @@
     });
   }
 
-  /**
-   * Member directory (filler). Founding principal profile inspired by public
-   * details associated with @AlekPavicevic on X — not an official endorsement.
-   */
-  const MEMBERS = [
-    {
-      id: "aleksa-pavicevic",
-      name: "Aleksa Pavicevic",
-      role: "Founding Principal",
-      location: "Montenegro",
-      since: "2023 Q4",
-      xHandle: "AlekPavicevic",
-      xUrl: "https://x.com/AlekPavicevic",
-      focus: "Capital allocation, member review, consortium strategy",
-      bio: "Founding principal at NexusCo. Known in public circuits for high-stakes invitational allocation and disciplined bankroll governance; now channels the same rigor into digital-asset consortium deployment alongside dao5 and aligned DAOs.",
-      tags: ["Principals", "dao5", "Governance"],
-      initials: "AP",
-    },
-    {
-      id: "elena-vukovic",
-      name: "Elena Vuković",
-      role: "Governance Lead",
-      location: "Belgrade, Serbia",
-      since: "2024 Q1",
-      focus: "NXS charter, voting procedures, protocol conversion",
-      bio: "Oversees DAO conversion mechanics and member attestation. Previously structured governance for European fintech collectives before joining the NexusCo principal committee.",
-      tags: ["Governance", "Legal"],
-      initials: "EV",
-    },
-    {
-      id: "marcus-chen",
-      name: "Marcus Chen",
-      role: "Research Principal",
-      location: "Singapore",
-      since: "2024 Q2",
-      focus: "Infrastructure & DeFi sleeves, memo diligence",
-      bio: "Leads investment memo review for infrastructure and liquidity protocols. Ex–quant desk, now dedicated to asymmetric network positions within the consortium book.",
-      tags: ["Research", "DeFi"],
-      initials: "MC",
-    },
-    {
-      id: "sofia-antonelli",
-      name: "Sofia Antonelli",
-      role: "Operations & Treasury",
-      location: "Milan, Italy",
-      since: "2023 Q4",
-      focus: "Treasury reporting, consortium reconciliations",
-      bio: "Maintains cross-DAO treasury telemetry and member-facing portfolio surfaces. Joined at inception to support the 2023 Q4 deployment window.",
-      tags: ["Operations", "Treasury"],
-      initials: "SA",
-    },
-    {
-      id: "james-holt",
-      name: "James Holt",
-      role: "Member Relations",
-      location: "London, UK",
-      since: "2025 Q1",
-      focus: "Referral review, onboarding attestations",
-      bio: "Manages the closed referral graph and principal introductions. No public intake — coordination occurs member-to-member only.",
-      tags: ["Membership"],
-      initials: "JH",
-    },
-  ];
-
   global.NexusData = {
     INVESTMENTS,
     RESOURCES,
     MEMBERS,
+    ENQUIRE_URL,
     CONSORTIUM_BOOK_USD,
     CONSORTIUM_SINCE,
     CONSORTIUM_NOTE,

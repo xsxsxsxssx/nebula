@@ -1,5 +1,5 @@
 /**
- * NexusCo portfolio & resources
+ * NexusDAO portfolio & resources
  */
 (function (global) {
   "use strict";
@@ -37,7 +37,7 @@
       currency: "USD",
       status: "Active",
       vintage: "2024-Q2",
-      consortium: "NexusCo",
+      consortium: "NexusDAO",
       round: "Series A",
     },
     {
@@ -81,7 +81,7 @@
       currency: "USD",
       status: "Active",
       vintage: "2024-Q2",
-      consortium: "NexusCo",
+      consortium: "NexusDAO",
       round: "Seed+",
     },
     {
@@ -114,7 +114,7 @@
       currency: "USD",
       status: "Active",
       vintage: "2024-Q3",
-      consortium: "NexusCo",
+      consortium: "NexusDAO",
       round: "Strategic",
     },
   ];
@@ -122,12 +122,12 @@
   const CONSORTIUM_BOOK_USD = INVESTMENTS.reduce((s, i) => s + i.daoCommitted, 0);
   const CONSORTIUM_SINCE = "2023 Q4";
   const CONSORTIUM_NOTE =
-    "Aggregate consortium participation across NexusCo, dao5, and aligned cryptocurrency DAOs. Figures represent committed capital by vintage.";
+    "Aggregate consortium participation across NexusDAO, dao5, and aligned cryptocurrency DAOs. Figures represent committed capital by vintage.";
 
   const RESOURCES = [
     { id: "lpa", title: "Limited Partnership Agreement", category: "Agreement", updated: "2024-01-12", format: "PDF" },
     { id: "charter", title: "DAO Conversion Charter (Draft)", category: "Agreement", updated: "2025-03-08", format: "PDF" },
-    { id: "whitepaper", title: "NexusCo Protocol Whitepaper", category: "Whitepaper", updated: "2024-06-20", format: "PDF" },
+    { id: "whitepaper", title: "NexusDAO Protocol Whitepaper", category: "Whitepaper", updated: "2024-06-20", format: "PDF" },
     { id: "memo-q4", title: "Investment Memo — 2023 Q4 Deployment", category: "Investment", updated: "2023-12-01", format: "PDF" },
     { id: "memo-infra", title: "Infrastructure Sleeve Overview", category: "Investment", updated: "2024-09-15", format: "PDF" },
     { id: "risk", title: "Risk & Disclosure Schedule", category: "Compliance", updated: "2024-02-28", format: "PDF" },

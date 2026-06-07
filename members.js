@@ -1,5 +1,5 @@
 /**
- * NexusCo members directory (wallet-gated)
+ * NexusDAO members directory (wallet-gated)
  */
 (function () {
   "use strict";

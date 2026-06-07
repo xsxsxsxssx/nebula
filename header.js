@@ -32,7 +32,7 @@
 
     return `
       <div class="header-inner">
-        <a href="index.html#home" class="header-logo accent-lavender-soft">NexusCo</a>
+        <a href="index.html#home" class="header-logo accent-lavender-soft">NexusDAO</a>
         <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
           Menu
         </button>
@@ -150,6 +150,7 @@
         const onHome =
           path.endsWith("/") ||
           path.endsWith("index.html") ||
+          path.endsWith("/NexusDAO") ||
           path.endsWith("/NexusCo") ||
           !path.includes(".html");
         if (!onHome) window.location.href = "index.html";

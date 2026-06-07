@@ -1,16 +1,32 @@
 /**
- * NexusCo wallet connection & member account registry (local)
+ * NexusDAO wallet connection & member account registry (local)
  */
 (function (global) {
   "use strict";
 
-  const STORAGE_KEY = "nexusco_wallet";
-  const REGISTRY_KEY = "nexusco_accounts";
+  const STORAGE_KEY = "nexusdao_wallet";
+  const REGISTRY_KEY = "nexusdao_accounts";
+  const LEGACY_STORAGE_KEY = "nexusco_wallet";
+  const LEGACY_REGISTRY_KEY = "nexusco_accounts";
 
   let provider = null;
   let listeners = [];
 
+  function migrateLegacyStorage() {
+    const legacyWallet = localStorage.getItem(LEGACY_STORAGE_KEY);
+    if (legacyWallet && !localStorage.getItem(STORAGE_KEY)) {
+      localStorage.setItem(STORAGE_KEY, legacyWallet);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    }
+    const legacyRegistry = localStorage.getItem(LEGACY_REGISTRY_KEY);
+    if (legacyRegistry && !localStorage.getItem(REGISTRY_KEY)) {
+      localStorage.setItem(REGISTRY_KEY, legacyRegistry);
+      localStorage.removeItem(LEGACY_REGISTRY_KEY);
+    }
+  }
+
   function getStored() {
+    migrateLegacyStorage();
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       return raw ? JSON.parse(raw) : null;
@@ -29,6 +45,7 @@
   }
 
   function getRegistry() {
+    migrateLegacyStorage();
     try {
       const raw = localStorage.getItem(REGISTRY_KEY);
       return raw ? JSON.parse(raw) : [];

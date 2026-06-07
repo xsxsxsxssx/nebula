@@ -1,5 +1,5 @@
 /**
- * NexusCo investment dashboard
+ * NexusDAO investment dashboard
  */
 (function () {
   "use strict";

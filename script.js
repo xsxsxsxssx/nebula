@@ -1,5 +1,5 @@
 /**
- * NexusCo — nebula portal, home header, hash navigation
+ * NexusDAO — nebula portal, home header, hash navigation
  */
 (function () {
   "use strict";

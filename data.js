@@ -25,7 +25,7 @@
       daoCommitted: 3_650_000,
       currency: "USD",
       status: "Active",
-      vintage: "2023-Q4",
+      vintage: "2023-Q1",
       consortium: "dao5",
       round: "Strategic",
     },

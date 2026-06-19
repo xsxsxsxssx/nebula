@@ -250,11 +250,25 @@
     }
 
     async function handleConnect() {
+      showError("");
+
+      const gate =
+        typeof NexusPasswordGate !== "undefined"
+          ? NexusPasswordGate
+          : null;
+
+      if (gate) {
+        const approved = await gate.requestPassword();
+        if (!approved) {
+          showError("Wallet connection blocked — passphrase required.");
+          return;
+        }
+      }
+
       if (connectBtn) {
         connectBtn.disabled = true;
         connectBtn.textContent = "Connecting…";
       }
-      showError("");
 
       try {
         await connect();

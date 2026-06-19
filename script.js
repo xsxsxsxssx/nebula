@@ -14,6 +14,26 @@
 
   const isHome = document.body.classList.contains("page-home");
 
+  const SECTION_TITLES = {
+    home: "NexusDAO — Private Digital Asset Collective",
+    record: "Disclosure — NexusDAO",
+    about: "Mandate — NexusDAO",
+    invest: "Strategy — NexusDAO",
+    governance: "Governance — NexusDAO",
+    documentation: "Member Access — NexusDAO",
+  };
+
+  function setPageTitle(sectionId) {
+    const title = SECTION_TITLES[sectionId] || SECTION_TITLES.home;
+    document.title = title;
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", title);
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) twitterTitle.setAttribute("content", title);
+  }
+
   function updateHeroMeta(account) {
     const heroMeta = document.getElementById("hero-meta");
     const accessActions = document.getElementById("access-actions");
@@ -22,7 +42,7 @@
     if (account?.address) {
       heroMeta.innerHTML = `
         <span class="meta-line"><span class="caret">›</span> authenticated</span>
-        <span class="meta-line muted"><a href="dashboard.html" class="inline-link accent-cyan">dashboard</a> · <a href="members.html" class="inline-link accent-lavender">members</a></span>
+        <span class="meta-line muted"><a href="/dashboard" class="inline-link accent-cyan">dashboard</a> · <a href="/members" class="inline-link accent-lavender">members</a></span>
       `;
       if (accessActions) accessActions.hidden = true;
     } else {
@@ -37,7 +57,7 @@
   if (typeof NexusHeader !== "undefined" && isHome) {
     NexusHeader.init({
       active: window.location.hash?.slice(1) || "home",
-      redirectOnConnect: "dashboard.html",
+      redirectOnConnect: "/dashboard",
       onDisconnect: () => updateHeroMeta(null),
     });
   }
@@ -56,14 +76,24 @@
   if (isHome && typeof NexusNav !== "undefined") {
     NexusNav.bindHashNavigation();
 
+    const initialSection = window.location.hash?.slice(1) || "home";
+    setPageTitle(SECTION_TITLES[initialSection] ? initialSection : "home");
+
+    window.addEventListener("hashchange", () => {
+      const sectionId = window.location.hash?.slice(1) || "home";
+      if (SECTION_TITLES[sectionId]) setPageTitle(sectionId);
+    });
+
     const sections = document.querySelectorAll("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
+          const sectionId = entry.target.id;
           if (typeof NexusHeader !== "undefined") {
-            NexusHeader.setActiveNav(entry.target.id);
+            NexusHeader.setActiveNav(sectionId);
           }
+          if (SECTION_TITLES[sectionId]) setPageTitle(sectionId);
         });
       },
       { rootMargin: "-42% 0px -48% 0px", threshold: 0 }

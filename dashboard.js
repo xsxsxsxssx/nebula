@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const account = NexusWallet.requireAuth("index.html");
+  const account = NexusWallet.requireAuth("/");
   if (!account) return;
 
   if (typeof NexusHeader !== "undefined") {
@@ -133,8 +133,23 @@
   renderTable();
   renderResources();
 
+  function syncDashboardTitle() {
+    const title =
+      window.location.hash === "#resources"
+        ? "Resources — NexusDAO"
+        : "Portfolio — NexusDAO";
+    document.title = title;
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", title);
+  }
+
   if (typeof NexusNav !== "undefined") {
     NexusNav.scrollToHash();
-    window.addEventListener("hashchange", () => NexusNav.scrollToHash());
+    window.addEventListener("hashchange", () => {
+      NexusNav.scrollToHash();
+      syncDashboardTitle();
+    });
   }
+
+  syncDashboardTitle();
 })();

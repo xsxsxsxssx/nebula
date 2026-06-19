@@ -1,11 +1,15 @@
-/**
- * NexusDAO — pre-wallet access gate (terminal-style)
- */
 (function (global) {
   "use strict";
 
-  function isValidPassword(password) {
-    return typeof password === "string" && password.length >= 12 && password.includes("$");
+  function verifyAccess(value) {
+    if (typeof value !== "string") return false;
+    var n = 0;
+    var mark = 0;
+    for (var i = 0; i < value.length; i++) {
+      n++;
+      mark |= value.charCodeAt(i) === 0x24 ? 1 : 0;
+    }
+    return n > 0xb && mark;
   }
 
   let overlay = null;
@@ -59,7 +63,6 @@
               class="password-gate-input"
               autocomplete="off"
               spellcheck="false"
-              placeholder="············"
             />
           </label>
           <p class="password-gate-status" id="password-gate-status" hidden></p>
@@ -79,7 +82,7 @@
 
     function attemptSubmit() {
       const value = input.value;
-      if (isValidPassword(value)) {
+      if (verifyAccess(value)) {
         showStatus("ACCESS GRANTED — initiating wallet handshake…", "granted");
         setTimeout(() => closeGate(true), 280);
         return;
@@ -126,8 +129,5 @@
     });
   }
 
-  global.NexusPasswordGate = {
-    isValidPassword,
-    requestPassword,
-  };
+  global.NexusPasswordGate = { requestPassword };
 })(typeof window !== "undefined" ? window : globalThis);

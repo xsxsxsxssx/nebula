@@ -30,10 +30,10 @@
     if (!connected) return false;
 
     const memberRoutes = {
-      resources: "dashboard.html#resources",
-      dashboard: "dashboard.html",
-      members: "members.html",
-      documentation: "dashboard.html#resources",
+      resources: "/dashboard#resources",
+      dashboard: "/dashboard",
+      members: "/members",
+      documentation: "/dashboard#resources",
     };
 
     if (memberRoutes[hash]) {

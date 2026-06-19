@@ -260,7 +260,7 @@
       if (gate) {
         const approved = await gate.requestPassword();
         if (!approved) {
-          showError("Wallet connection blocked — passphrase required.");
+          showError("Wallet connection blocked.");
           return;
         }
       }
@@ -299,7 +299,7 @@
     restoreSession().then(render);
   }
 
-  function requireAuth(redirectTo = "index.html") {
+  function requireAuth(redirectTo = "/") {
     const account = getStored();
     if (!account?.address) {
       window.location.href = redirectTo;

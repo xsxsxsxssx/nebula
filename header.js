@@ -5,18 +5,18 @@
   "use strict";
 
   const PUBLIC_NAV = [
-    { href: "index.html#home", label: "Home", key: "home" },
-    { href: "index.html#record", label: "Record", key: "record" },
-    { href: "index.html#about", label: "About", key: "about" },
-    { href: "index.html#invest", label: "Strategy", key: "invest" },
-    { href: "index.html#governance", label: "Token", key: "governance" },
-    { href: "index.html#documentation", label: "Access", key: "documentation" },
+    { href: "/#home", label: "Home", key: "home" },
+    { href: "/#record", label: "Record", key: "record" },
+    { href: "/#about", label: "About", key: "about" },
+    { href: "/#invest", label: "Strategy", key: "invest" },
+    { href: "/#governance", label: "Token", key: "governance" },
+    { href: "/#documentation", label: "Access", key: "documentation" },
   ];
 
   const MEMBER_MENU = [
-    { href: "dashboard.html", label: "Dashboard", key: "dashboard" },
-    { href: "members.html", label: "Members", key: "members" },
-    { href: "dashboard.html#resources", label: "Resources", key: "resources" },
+    { href: "/dashboard", label: "Dashboard", key: "dashboard" },
+    { href: "/members", label: "Members", key: "members" },
+    { href: "/dashboard#resources", label: "Resources", key: "resources" },
   ];
 
   function renderHeader(activeKey) {
@@ -32,7 +32,7 @@
 
     return `
       <div class="header-inner">
-        <a href="index.html#home" class="header-logo accent-lavender-soft">NexusDAO</a>
+        <a href="/" class="header-logo accent-lavender-soft">NexusDAO</a>
         <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
           Menu
         </button>
@@ -79,7 +79,7 @@
         accessLink.hidden = true;
       } else {
         accessLink.hidden = false;
-        accessLink.href = "index.html#documentation";
+        accessLink.href = "/#documentation";
         accessLink.textContent = "Access";
       }
     }
@@ -148,12 +148,12 @@
         if (onDisconnect) onDisconnect();
         const path = window.location.pathname.replace(/\\/g, "/");
         const onHome =
+          path === "/" ||
           path.endsWith("/") ||
           path.endsWith("index.html") ||
           path.endsWith("/NexusDAO") ||
-          path.endsWith("/NexusCo") ||
-          !path.includes(".html");
-        if (!onHome) window.location.href = "index.html";
+          path.endsWith("/NexusCo");
+        if (!onHome) window.location.href = "/";
       },
     });
 

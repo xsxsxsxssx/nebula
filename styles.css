@@ -858,11 +858,6 @@ body.password-gate-open {
 .password-gate-prompt {
   font-size: 0.78rem;
   color: var(--fg-secondary);
-  margin-bottom: 0.35rem;
-}
-
-.password-gate-hint {
-  font-size: 0.68rem;
   margin-bottom: 1.25rem;
 }
 

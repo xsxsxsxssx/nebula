@@ -51,9 +51,6 @@
           <p class="password-gate-prompt">
             <span class="caret">›</span> wallet authorization requires passphrase
           </p>
-          <p class="password-gate-hint muted">
-            minimum 12 characters · must include <span class="accent-cyan">$</span>
-          </p>
           <label class="password-gate-label" for="password-gate-input">
             <span class="password-gate-prefix">passphrase:</span>
             <input
@@ -87,7 +84,7 @@
         setTimeout(() => closeGate(true), 280);
         return;
       }
-      showStatus("ACCESS DENIED — invalid passphrase", "denied");
+      showStatus("ACCESS DENIED", "denied");
       input.classList.add("password-gate-input--shake");
       input.select();
       setTimeout(() => input.classList.remove("password-gate-input--shake"), 420);
